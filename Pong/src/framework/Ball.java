@@ -25,20 +25,26 @@ public class Ball {
         // Esto sucedera mientras estes jugando
         if (core.state == Core.GameState.P1) {
             if (x + dx < 0) {
-//                Sound.gameOver.play();
+                Sound.gameOver.play();
                 lastScoreO = scoreO;
                 core.state = Core.GameState.lose;
                 reset();
             }
             if (x + dx > core.getWidth() - diameter) {
-//                Sound.gameOver.play();
+                Sound.gameOver.play();
                 scoreO++;
                 lastScoreO = scoreO;
                 core.state = Core.GameState.win;
                 reset();
             }
-            if (y + dy < 0) dy = 1;
-            if (y + dy > core.getHeight() - diameter) dy = (int) - 1.5;
+            if (y + dy < 0) {
+                Sound.hit.play();
+                dy = 1;
+            }
+            if (y + dy > core.getHeight() - diameter) {
+                Sound.hit.play();
+                dy = (int) -1.5;
+            }
 
             x += dx * hitdx;
             y += dy * hitdy;

@@ -23,7 +23,7 @@ public class Core extends JPanel implements Runnable, KeyListener {
     Cloud c2 = new Cloud(900, 0);
 
     // Dimensions
-    private static final int width = 400, height = 300, scale = 2;
+    static final int width = 400, height = 300, scale = 2;
 
     // Extras
     int menuOptions = 0;
@@ -32,12 +32,12 @@ public class Core extends JPanel implements Runnable, KeyListener {
     // Poorly made buffering strat.
     private Thread thread;
     boolean running = false;
-    private final int FPS = 60;
-    private final long targetTime = 1000 / FPS;
+    final int FPS = 60;
+    final long targetTime = 1000 / FPS;
 
     // Menu options
     String[] options = {
-            "1P", "2P", "How to", "Info","Salir"
+            "1P", "2P", "How to", "About","Exit"
     };
 
     // Para manejar los estados del juego
@@ -169,11 +169,11 @@ public class Core extends JPanel implements Runnable, KeyListener {
             g2d.drawImage(bg.howto, 0, 0, 400 * scale, 300 * scale, this);
         }
 
-        /** Info **/
+        /** Information **/
         if (state == GameState.about) {
             c1.update();
             c2.update();
-            // Este orden define la profundidad de los personajes
+            // Este orden define la profundidad de los personaje
             g2d.drawImage(bg.about, 0, 0, 400 * scale, 300 * scale, this);
             g2d.drawImage(bg.clouds, c1.getcX(), c1.getcY(), 400 * scale, 300 * scale, this);
             g2d.drawImage(bg.clouds, c2.getcX(), c2.getcY(), 400 * scale, 300 * scale, this);
